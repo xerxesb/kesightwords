@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>FitText</title>
+
+        <style type="text/css">
+            body {
+              background: #e8e8e8; 
+              color: #000000;
+              font-family: "Arial";
+            }
+
+            span {
+                text-align: center;
+                color:#000000;
+                font-family: "Impact";
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;                
+            }
+
+            #navlist li
+            {
+                display: inline;
+                list-style-type: none;
+                padding-right: 20px;
+            }
+
+            a {
+                font-size: 18pt;
+            }
+        </style>
+
+        <script type="text/javascript">
+            WordEngine = {
+                goldenWords: ["a", "and", "be", "I", "in", "is", "it", "of", "that", "the", "two", "was"],
+                redWords: ["all", "are", "as", "at", "but", "for", "had", "have", "he", "her", "his", "not", "on", "one", "said", "so", "they", "we", "with", "you"],
+                
+                currentWordset: null,
+                currentWordIndex: 0,
+
+                create: function(wordset) {
+                    var e = WordEngine;
+                    e.currentWordset = wordset || this.goldenWords;
+                    e.currentWordIndex = -1;
+                    return e;
+                },
+
+                nextWord: function() {
+                    this.currentWordIndex += 1;
+                    if (this.currentWordIndex == this.currentWordset.length) {
+                        return "~~";
+                    }
+                    return this.currentWordset[this.currentWordIndex];
+                }
+            }
+        </script>
+
+        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    </head>
+
+    <body>
+        <div>
+            <ul id="navlist">
+            <li><a href="javascript:resetEngine(WordEngine.goldenWords);">Golden words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.redWords);">Red words</a></li>
+            </ul>
+        </div>
+        <div id="bigtext">
+            <span id="word">Word</span>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="bigtext.js"></script>
+        <script>
+          $('#bigtext').bigtext();
+
+          var engine = WordEngine.create();
+
+          function resetEngine(words) {
+            engine = WordEngine.create(words);
+            displayWord();
+          }
+
+          function displayWord() {
+            var word = engine.nextWord();
+            $('#word').text(word);
+            $('#bigtext').bigtext();
+          }
+
+          $(document).ready(function() {
+            $("#word").bind('click', displayWord);
+            displayWord();
+          });
+        </script>
+    </body>
+</html>
