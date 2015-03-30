@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>FitText</title>
+        <title>KE Sight Words</title>
 
         <style type="text/css">
             body {
@@ -39,7 +39,13 @@
             WordEngine = {
                 goldenWords: ["a", "and", "be", "I", "in", "is", "it", "of", "that", "the", "two", "was"],
                 redWords: ["all", "are", "as", "at", "but", "for", "had", "have", "he", "her", "his", "not", "on", "one", "said", "so", "they", "we", "with", "you"],
-                
+                blueWords: ["an", "by", "do", "go", "if", "me", "my", "no", "or", "up"],
+                greenWords: ["big", "can", "did", "get", "has", "him", "new", "now", "off", "old", "our", "out", "see", "she", "two", "who"],
+                orangeWords: ["back", "been", "came", "down", "from", "into", "just", "like", "made", "much", "over", "them", "this", "well", "went", "when"],
+                indigoWords: ["call", "come", "here", "make", "must", "only", "some", "then", "were", "what", "will", "your"],
+                violetWords: ["about", "before", "could", "first", "little", "look", "more", "other", "right", "their", "there", "want", "where", "which"],
+
+
                 currentWordset: null,
                 currentWordIndex: 0,
 
@@ -53,7 +59,7 @@
                 nextWord: function() {
                     this.currentWordIndex += 1;
                     if (this.currentWordIndex == this.currentWordset.length) {
-                        return "~~";
+                        return "☺";
                     }
                     return this.currentWordset[this.currentWordIndex];
                 }
@@ -64,10 +70,15 @@
     </head>
 
     <body>
-        <div>
+        <div style="text-align:center;">
             <ul id="navlist">
-            <li><a href="javascript:resetEngine(WordEngine.goldenWords);">Golden words</a></li>
-            <li><a href="javascript:resetEngine(WordEngine.redWords);">Red words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.goldenWords);" style="color:gold;">Golden words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.redWords);" style="color:red;">Red words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.blueWords);" style="color:blue;">Blue words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.greenWords);" style="color:green;">Green words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.orangeWords);" style="color:orange;">Orange words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.indigoWords);" style="color:indigo;">Indigo words</a></li>
+            <li><a href="javascript:resetEngine(WordEngine.violetWords);" style="color:violet;">Violet words</a></li>
             </ul>
         </div>
         <div id="bigtext">
